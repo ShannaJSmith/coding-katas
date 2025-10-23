@@ -6,13 +6,10 @@
 
 function twoSum(nums, sum) {
   const map = new Map();
-  console.log('Input nums:', nums, 'sum:', sum)
   for (let i = 0; i < nums.length; i++) {
     const complement = sum - nums[i];
     if (map.has(complement)) {
-      const answer = [map.get(complement), i]
-      console.log('Answer:', answer);
-      return answer;
+      return [map.get(complement), i];
     }
     map.set(nums[i], i);
   }
