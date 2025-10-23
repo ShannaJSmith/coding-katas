@@ -31,6 +31,29 @@ function twoSumBruteForce(nums, sum) {
   return [];
 }
 
+// comments: less efficient due to O(n^2) time complexity compared to O(n) for the map solution
 twoSumBruteForce([2, 7, 11, 15], 9); // [0, 1]
 
-// comments: less efficient due to O(n^2) time complexity compared to O(n) for the map solution
+
+// To pass edge case tests, add input validation
+// function twoSum(nums, sum) {
+//   if (!Array.isArray(nums) || typeof sum !== 'number') return [];
+//   const map = new Map();
+//   for (let i = 0; i < nums.length; i++) {
+//     const complement = sum - nums[i];
+//     if (map.has(complement)) return [map.get(complement), i];
+//     map.set(nums[i], i);
+//   }
+//   return [];
+// }
+
+// function twoSumBruteForce(nums, sum) {
+//   if (!Array.isArray(nums) || typeof sum !== 'number') return [];
+//   for (let i = 0; i < nums.length; i++) {
+//     for (let j = i + 1; j < nums.length; j++) {
+//       if (nums[i] + nums[j] === sum) return [i, j];
+//     }
+//   }
+//   return [];
+// }
+module.exports = { twoSum, twoSumBruteForce };
