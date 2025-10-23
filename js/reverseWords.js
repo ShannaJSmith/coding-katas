@@ -30,4 +30,4 @@ function reverseWordsIgnoreSpaces(str) {
 
 reverseWordsIgnoreSpaces("  hello   world  "); // "world hello"
 
-module.exports = { reverseWords };
+module.exports = { reverseWords , reverseWordsIgnoreSpaces };
