@@ -17,3 +17,20 @@ function twoSum(nums, sum) {
 }
 
 twoSum([2, 7, 11, 15], 9); // answer: [0, 1]
+
+// Alternative solution using brute force (nested loops)
+
+function twoSumBruteForce(nums, sum) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === sum) {
+        return [i, j];
+      }
+    }
+  }
+  return [];
+}
+
+twoSumBruteForce([2, 7, 11, 15], 9); // [0, 1]
+
+// comments: less efficient due to O(n^2) time complexity compared to O(n) for the map solution
