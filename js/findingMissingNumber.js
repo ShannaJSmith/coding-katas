@@ -16,6 +16,20 @@ function findingMissingNumber(arr) {
   return 0; // or if no gaps, so return 0
 }
 
+// Alternative function to find multiple missing numbers
+
+// function findingMultipleMissingNumbers(arr) {
+//   arr.sort((a, b) => a - b);
+//   const missingNumbers = []; // define an array to hold missing numbers
+//   for (let i = 0; i < arr.length; i++) {
+//     while (arr[i] !== i + 1) {
+//       missingNumbers.push(i + 1); // add the missing number to the list
+//       i++; // increment i to check for next missing number
+//     }
+//   }
+//   return missingNumbers.length > 0 ? missingNumbers : [0];
+// }
+
 
 // Example usage:
 findingMissingNumber([1, 2, 4, 5, 6]); // 3

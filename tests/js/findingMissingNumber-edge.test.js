@@ -17,6 +17,11 @@ describe('Edge cases', () => {
     expect(findingMissingNumber(arr)).toBe(5678);
   });
 
+  // For Fun
+  test('handles more than one missing number by returning the first missing number', () => {
+    expect(findingMissingNumber([1, 2, 4, 6])).toBe(3); // 3 is the first missing number
+  });
+
   // could do negative numbers but the question assumes the sequence starts at 1.
   // test('handles arrays with negative numbers', () => {})
 });
