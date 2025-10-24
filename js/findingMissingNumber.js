@@ -7,7 +7,7 @@
  * findMissingNumber([1, 2, 3, 4, 5]) ➜ 0  // means nothing is missing
  */
 
-function findMissingNumber(arr) {
+function findingMissingNumber(arr) {
   arr.sort((a, b) => a - b); // sort array in ascending order
   for (let i = 0; i < arr.length; i++) { // loop through the array to find break in sequence
     // sequence should be i + 1 since array is 0 indexed but the array starts from 1
@@ -18,9 +18,9 @@ function findMissingNumber(arr) {
 
 
 // Example usage:
-findMissingNumber([1, 2, 4, 5, 6]); // 3
-findMissingNumber([2, 3, 1, 5]); // 4
-findMissingNumber([1, 2, 3, 4, 5]); // 0
+findingMissingNumber([1, 2, 4, 5, 6]); // 3
+findingMissingNumber([2, 3, 1, 5]); // 4
+findingMissingNumber([1, 2, 3, 4, 5]); // 0
 
 // Comments: does not account for multiple missing numbers
 
