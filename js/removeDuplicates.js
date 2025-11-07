@@ -5,20 +5,33 @@
 * one up to the point of uniqueness.
 */
 
-// Not "in-place" version but works
 function removeDuplicates(arr) {
     let countOfUniqueEl = 0;
-    let uniqueMap = {};
 
-    for (let num of arr) {
-        if (uniqueMap[num] === undefined) {
-            uniqueMap[num] = 1;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== arr[i + 1]) { // If current element is different from the next
+            arr[countOfUniqueEl] = arr[i]; // Place it at the position of countOfUniqueEl
             countOfUniqueEl++;
         }
     }
 
-    return countOfUniqueEl;
+    return countOfUniqueEl;     
 }
+
+// Not "in-place" version but works
+// function removeDuplicates(arr) {
+//     let countOfUniqueEl = 0;
+//     let uniqueMap = {};
+
+//     for (let num of arr) {
+//         if (uniqueMap[num] === undefined) {
+//             uniqueMap[num] = 1;
+//             countOfUniqueEl++;
+//         }
+//     }
+
+//     return countOfUniqueEl;
+// }
 
 
 removeDuplicates([1,1,2,2,3]) // 3, array modified to [1,2,3,...]
