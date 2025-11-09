@@ -6,16 +6,17 @@
  */
 
 function moveZeroes(arr) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = arr.length - 1; i >= 0; i--) {
         if (arr[i] === 0) {
             arr.push(...arr.splice(i, 1))
         }
     }
-      console.log(arr)
+    console.log(arr)
 }
 
 moveZeroes([0, 1, 0, 3, 12]); // [1, 3, 12, 0, 0]
 moveZeroes([1, 2, 3, 4]); // [1, 2, 3, 4] 
 moveZeroes([0, -1, 2, 0, -3, 4]); // [-1, 2, -3, 4, 0, 0]
 moveZeroes([0, 0, 1]); // [1, 0, 0]
+
 module.exports = { moveZeroes };
