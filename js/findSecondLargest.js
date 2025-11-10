@@ -4,47 +4,38 @@
  * If there isn’t one (because all elements are equal or there’s only one), return null.
  */
 
-function findSecondLargest(arr) {
-    if (arr.length < 2) return null;
-    
-    let largest = null;
-    let secondLargest = null;
-
-    for (num of arr) {
-        if(num === null || num > largest) {
-            secondLargest = largest;
-            largest = num;
-        } else if (num !== largest && (secondLargest === null || num > secondLargest)) {
-            secondLargest = num;
-        }
-    }
-    console.log(secondLargest)
-        return secondLargest;
-}
-// Alt Solution
 // function findSecondLargest(arr) {
-//   if (arr.length < 2) return null;
+//     if (arr.length < 2) return null;
+    
+//     let largest = null;
+//     let secondLargest = null;
 
-//   const { largest, second } = arr.reduce(
-//     (acc, num) => {
-//       const { largest, second } = acc;
+//     for (num of arr) {
+//         if(num === null || num > largest) {
+//             secondLargest = largest;
+//             largest = num;
+//         } else if (num !== largest && (secondLargest === null || num > secondLargest)) {
+//             secondLargest = num;
+//         }
+//     }
 
-//       if (largest === null || num > largest) {
-//         return { largest: num, second: largest };
-//       } else if (
-//         num !== largest &&
-//         (second === null || num > second)
-//       ) {
-//         return { largest, second: num };
-//       }
-
-//       return acc;
-//     },
-//     { largest: null, second: null }
-//   );
-
-//   return second;
+//         return secondLargest;
 // }
+
+// Alt Solution
+function findSecondLargest(arr) {
+  const { secondLargest } = arr.reduce(
+    ({ largest, secondLargest }, num) =>
+      largest === null || num > largest
+        ? { largest: num, secondLargest: largest }
+        : num !== largest && (secondLargest === null || num > secondLargest)
+        ? { largest, secondLargest: num }
+        : { largest, secondLargest },
+    { largest: null, secondLargest: null }
+  );
+
+  return secondLargest;
+}
 
 
 findSecondLargest([2, 1, 5, 8]) // 5
