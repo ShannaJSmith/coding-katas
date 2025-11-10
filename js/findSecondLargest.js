@@ -21,6 +21,31 @@ function findSecondLargest(arr) {
     console.log(secondLargest)
         return secondLargest;
 }
+// Alt Solution
+// function findSecondLargest(arr) {
+//   if (arr.length < 2) return null;
+
+//   const { largest, second } = arr.reduce(
+//     (acc, num) => {
+//       const { largest, second } = acc;
+
+//       if (largest === null || num > largest) {
+//         return { largest: num, second: largest };
+//       } else if (
+//         num !== largest &&
+//         (second === null || num > second)
+//       ) {
+//         return { largest, second: num };
+//       }
+
+//       return acc;
+//     },
+//     { largest: null, second: null }
+//   );
+
+//   return second;
+// }
+
 
 findSecondLargest([2, 1, 5, 8]) // 5
 findSecondLargest([6, 6, 6]) // null
