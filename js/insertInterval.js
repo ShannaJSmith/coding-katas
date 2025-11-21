@@ -7,6 +7,10 @@
  */
 
 function insertInterval(ints, newInt) {
+  if (!Array.isArray(newInt) || newInt.length !== 2) {
+        throw new TypeError("newInt must be a [start, end] array");
+    }
+  
     let [newStart, newEnd] = newInt;
     const result = [];
 
