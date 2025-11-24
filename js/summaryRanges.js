@@ -6,6 +6,7 @@
 
 function summaryRanges(nums) {
   const result = [];
+  if (nums.length === 0) return result;
 
   let start = nums[0];
   let end = nums[0];
