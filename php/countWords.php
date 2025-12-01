@@ -6,10 +6,15 @@
  * Multiple spaces should not affect the count.
  */
 
+// function countWords(string $s): int {
+//     // Extract sequences of letters or digits
+//     preg_match_all('/[A-Za-z0-9]+/', $s, $matches);
+//     return count($matches[0]);
+// }
+
 function countWords(string $s): int {
-    // Extract sequences of letters or digits
-    preg_match_all('/[A-Za-z0-9]+/', $s, $matches);
-    return count($matches[0]);
+    $parts = array_filter(explode(" ", trim($s)), fn($w) => $w !== "");
+    return count($parts);
 }
 
 // Test cases
