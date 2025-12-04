@@ -6,25 +6,24 @@
  */
 
 function firstNonRepeatingChar(string $str): string {
+    $lower = strtolower($str);
     $freq = [];
 
-    // Count occurrences
-    $len = strlen($str);
-    for ($i = 0; $i < $len; $i++) {
-        $char = $str[$i];
+    // count case-insensitive
+    for ($i = 0; $i < strlen($lower); $i++) {
+        $char = $lower[$i];
         $freq[$char] = ($freq[$char] ?? 0) + 1;
     }
 
-    // Find the first char with count === 1
-    for ($i = 0; $i < $len; $i++) {
-        $char = $str[$i];
-        if ($freq[$char] === 1) {
-            return $char;
+    for ($i = 0; $i < strlen($str); $i++) {
+        if ($freq[$lower[$i]] === 1) {
+            return $str[$i];
         }
     }
 
     return "";
 }
+
 
 // Test cases
 echo firstNonRepeatingChar("aabbcdd") . "\n";   // c
