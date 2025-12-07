@@ -89,5 +89,14 @@ echo mostFrequentWord("Hi hi! HI??? hello");        // "Hi"
 echo "\n";
 echo mostFrequentWord("one two three");             // "one"
 echo "\n";
-
+echo mostFrequentWord("apple banana apple orange banana apple"); // apple
+echo "\n";
+echo mostFrequentWord("cat dog dog cat cat dog");                // cat (tie so go with first)
+echo "\n";
+echo mostFrequentWord("One one ONE two Two");                   // one
+echo "\n";
+echo mostFrequentWord("x y z");                                  // x (all equal, go with first)
+echo "\n";
+echo mostFrequentWord("");                                       // ""
+echo "\n";
 
