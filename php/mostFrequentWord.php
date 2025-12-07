@@ -7,42 +7,76 @@
  * Ignore punctuation like . , ! ? attached to words.
  */
 
-function mostFrequentWord(string $str): string {
-    if (trim($str) === "") return "";
+// function mostFrequentWord(string $str): string {
+//     if (trim($str) === "") return "";
 
-    // Remove punctuation around words
-    $clean = preg_replace("/[^\w\s]/", "", $str);
+//     // Remove punctuation around words
+//     $clean = preg_replace("/[^\w\s]/", "", $str);
 
-    $words = explode(" ", $clean);
-    $counts = [];
-    $firstSeen = [];
+//     $words = explode(" ", $clean);
+//     $counts = [];
+//     $firstSeen = [];
 
-    foreach ($words as $index => $w) {
-        if ($w === "") continue;
+//     foreach ($words as $index => $w) {
+//         if ($w === "") continue;
 
-        $lower = strtolower($w);
+//         $lower = strtolower($w);
 
-        // count it
-        if (!isset($counts[$lower])) {
-            $counts[$lower] = 0;
-            $firstSeen[$lower] = $w; // original casing
+//         // count it
+//         if (!isset($counts[$lower])) {
+//             $counts[$lower] = 0;
+//             $firstSeen[$lower] = $w; // original casing
+//         }
+//         $counts[$lower]++;
+//     }
+
+//     // find max
+//     $best = "";
+//     $bestCount = 0;
+//     $order = array_keys($counts); // preserves first occurrence order
+
+//     foreach ($order as $word) {
+//         if ($counts[$word] > $bestCount) {
+//             $best = $firstSeen[$word];
+//             $bestCount = $counts[$word];
+//         }
+//     }
+
+//     return $best;
+// }
+
+// Alt
+function mostFrequentWord(string $text): string {
+    if (trim($text) === "") return "";
+
+    // Normalize to lowercase for counting
+    $words = preg_split("/\s+/", strtolower($text));
+
+    $freq = [];              // word => count
+    $firstIndex = [];        // word => first time seen
+    $maxFrequency = 0;
+    $mostFrequentWord = "";
+    $tieBreakerIndex = PHP_INT_MAX;
+
+    foreach ($words as $i => $word) {
+        if (!isset($freq[$word])) {
+            $freq[$word] = 0;
+            $firstIndex[$word] = $i;
         }
-        $counts[$lower]++;
+
+        $freq[$word]++;
+
+        if (
+            $freq[$word] > $maxFrequency ||
+            ($freq[$word] === $maxFrequency && $firstIndex[$word] < $tieBreakerIndex)
+        ) {
+            $maxFrequency = $freq[$word];
+            $mostFrequentWord = $word;
+            $tieBreakerIndex = $firstIndex[$word];
+        }
     }
 
-    // find max
-    $best = "";
-    $bestCount = 0;
-    $order = array_keys($counts); // preserves first occurrence order
-
-    foreach ($order as $word) {
-        if ($counts[$word] > $bestCount) {
-            $best = $firstSeen[$word];
-            $bestCount = $counts[$word];
-        }
-    }
-
-    return $best;
+    return $mostFrequentWord;
 }
 
 
@@ -55,3 +89,5 @@ echo mostFrequentWord("Hi hi! HI??? hello");        // "Hi"
 echo "\n";
 echo mostFrequentWord("one two three");             // "one"
 echo "\n";
+
+
