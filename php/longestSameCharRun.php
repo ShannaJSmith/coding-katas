@@ -5,26 +5,40 @@
  * Case-sensitive. The run must be contiguous. Empty string returns 0
  */
 
+// function longestSameCharRun(string $str): int {
+//     $len = strlen($str);
+//     if ($len === 0) return 0;
+
+//     $maxRun = 1;
+//     $currentRun = 1;
+
+//     for ($i = 1; $i < $len; $i++) {
+//         if ($str[$i] === $str[$i - 1]) {
+//             $currentRun++;
+//         } else {
+//             $currentRun = 1;
+//         }
+
+//         if ($currentRun > $maxRun) {
+//             $maxRun = $currentRun;
+//         }
+//     }
+
+//     return $maxRun;
+// }
+
 function longestSameCharRun(string $str): int {
-    $len = strlen($str);
-    if ($len === 0) return 0;
+    if ($str === "") return 0;
 
-    $maxRun = 1;
-    $currentRun = 1;
+    // Match runs of the same character
+    preg_match_all('/(.)\1*/', $str, $matches);
 
-    for ($i = 1; $i < $len; $i++) {
-        if ($str[$i] === $str[$i - 1]) {
-            $currentRun++;
-        } else {
-            $currentRun = 1;
-        }
-
-        if ($currentRun > $maxRun) {
-            $maxRun = $currentRun;
-        }
+    $max = 0;
+    foreach ($matches[0] as $run) {
+        $max = max($max, strlen($run));
     }
 
-    return $maxRun;
+    return $max;
 }
 
 
