@@ -5,30 +5,44 @@
  * return the smallest positive integer that is not present in the array.
  */
 
+// function firstMissingPositive(array $nums): int {
+//     $n = count($nums);
+
+//     // Place each number in its "correct index" position
+//     for ($i = 0; $i < $n; $i++) {
+//         while (
+//             $nums[$i] > 0 &&
+//             $nums[$i] <= $n &&
+//             $nums[$nums[$i] - 1] !== $nums[$i]
+//         ) {
+//             $temp = $nums[$nums[$i] - 1];
+//             $nums[$nums[$i] - 1] = $nums[$i];
+//             $nums[$i] = $temp;
+//         }
+//     }
+
+//     for ($i = 0; $i < $n; $i++) {
+//         if ($nums[$i] !== $i + 1) {
+//             return $i + 1;
+//         }
+//     }
+
+//     return $n + 1;
+// }
+
 function firstMissingPositive(array $nums): int {
-    $n = count($nums);
+    sort($nums);
+    $expected = 1;
 
-    // Place each number in its "correct index" position
-    for ($i = 0; $i < $n; $i++) {
-        while (
-            $nums[$i] > 0 &&
-            $nums[$i] <= $n &&
-            $nums[$nums[$i] - 1] !== $nums[$i]
-        ) {
-            $temp = $nums[$nums[$i] - 1];
-            $nums[$nums[$i] - 1] = $nums[$i];
-            $nums[$i] = $temp;
+    foreach ($nums as $num) {
+        if ($num === $expected) {
+            $expected++;
         }
     }
 
-    for ($i = 0; $i < $n; $i++) {
-        if ($nums[$i] !== $i + 1) {
-            return $i + 1;
-        }
-    }
-
-    return $n + 1;
+    return $expected;
 }
+
 
 // Test cases
 echo firstMissingPositive([3, 4, -1, 1]) . "\n";   // 2
