@@ -7,26 +7,51 @@
  */
 
 
+// function longestIncreasingRun(array $arr): int {
+//     $num = count($arr);
+//     if ($num === 0) return 0;
+
+//     $maxLen = 1;
+//     $curr = 1;
+
+//     for ($i = 1; $i < $num; $i++) {
+//         if ($arr[$i] > $arr[$i - 1]) {
+//             $curr++;
+//         } else {
+//             $curr = 1;
+//         }
+
+//         if ($curr > $maxLen) {
+//             $maxLen = $curr;
+//         }
+//     }
+
+//     return $maxLen;
+// }
+
 function longestIncreasingRun(array $arr): int {
-    $num = count($arr);
-    if ($num === 0) return 0;
+    $len = count($arr);
+    if ($len === 0) return 0;
 
-    $maxLen = 1;
-    $curr = 1;
+    $maxRun = 1;
+    $currentRun = 1;
+    $prev = $arr[0];
 
-    for ($i = 1; $i < $num; $i++) {
-        if ($arr[$i] > $arr[$i - 1]) {
-            $curr++;
+    for ($i = 1; $i < $len; $i++) {
+        if ($arr[$i] > $prev) {
+            $currentRun++;
         } else {
-            $curr = 1;
+            $currentRun = 1;
         }
 
-        if ($curr > $maxLen) {
-            $maxLen = $curr;
+        if ($currentRun > $maxRun) {
+            $maxRun = $currentRun;
         }
+
+        $prev = $arr[$i];
     }
 
-    return $maxLen;
+    return $maxRun;
 }
 
 
