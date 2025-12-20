@@ -4,26 +4,51 @@
  * Given a string s, return the length of the longest substring that contains no repeated characters.
  */
 
-    function longestUniqueSubstr(string $s): int
-    {
-        $lastIndex = [];
-        $max = 0;
-        $start = 0;
+    // function longestUniqueSubstr(string $s): int
+    // {
+    //     $lastIndex = [];
+    //     $max = 0;
+    //     $start = 0;
 
-        $length = strlen($s);
-        for ($i = 0; $i < $length; $i++) {
-            $char = $s[$i];
-            if (isset($lastIndex[$char]) && $lastIndex[$char] >= $start) {
-                // Move start right after previous occurrence
-                $start = $lastIndex[$char] + 1;
+    //     $length = strlen($s);
+    //     for ($i = 0; $i < $length; $i++) {
+    //         $char = $s[$i];
+    //         if (isset($lastIndex[$char]) && $lastIndex[$char] >= $start) {
+    //             // Move start right after previous occurrence
+    //             $start = $lastIndex[$char] + 1;
+    //         }
+    //         $lastIndex[$char] = $i;
+    //         $currentLen = $i - $start + 1;
+    //         if ($currentLen > $max) $max = $currentLen;
+    //     }
+
+    //     return $max;
+    // }
+
+    // Brute force method
+    function longestUniqueSubstr(string $str): int
+{
+    $n = strlen($str);
+    $max = 0;
+
+    for ($i = 0; $i < $n; $i++) {
+        $seen = [];
+
+        for ($j = $i; $j < $n; $j++) {
+            $char = $str[$j];
+
+            if (isset($seen[$char])) {
+                break; // duplicate found, stop substring
             }
-            $lastIndex[$char] = $i;
-            $currentLen = $i - $start + 1;
-            if ($currentLen > $max) $max = $currentLen;
-        }
 
-        return $max;
+            $seen[$char] = true;
+            $max = max($max, $j - $i + 1);
+        }
     }
+
+    return $max;
+}
+
 
 // Test cases
 echo longestUniqueSubstr("abcabcbb"); // 3    "abc"
