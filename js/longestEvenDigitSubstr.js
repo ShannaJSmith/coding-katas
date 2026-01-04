@@ -27,9 +27,9 @@ function longestEvenDigitSubstr(s) {
   return maxLength;
 }
 
-console.log(longestEvenDigitSubstr("eceba"));     // 3
-console.log(longestEvenDigitSubstr("ccaabbb"));   // 5
-console.log(longestEvenDigitSubstr("a"));         // 1
-console.log(longestEvenDigitSubstr("abc"));       // 2
+longestEvenDigitSubstr("eceba");     // 3
+longestEvenDigitSubstr("ccaabbb");   // 5
+longestEvenDigitSubstr("a");         // 1
+longestEvenDigitSubstr("abc");       // 2
 
 module.exports = { longestEvenDigitSubstr };
